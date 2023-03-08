@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ex001</title>
+    <link rel="stylesheet" href="ex001.css">
+</head>
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <h2>14章異常レベルとトランザクション分離レベル</h2>
+    <h3>14.1異常レベル</h3>
+
+    <p> 複数のトランザクションが同時に実行された場合、データの矛盾が起きえる。矛盾の種類は以下の通り。これらは必ず起こるわけではなく、トランザクションに設定した分離レベルによって、発生を抑制することができる。</p>
+    <p style="white-space: pre;">
+        ダーティリード
+        同時に実行されている他のトランザクションが更新中の（未だコミットしていない）データを読み込んでしまう。
+        反復不能読み取り
+        一度読み込んだデータを再度読み込んだ際に違ったデータを読み込んでしまう。他のトランザクションの更新に対するコミット前後のデータを読み込むことで発生する。
+        ファントムリード
+        一度検索した条件と同じ検索を再度行った際に、レコードが増えたり減ったりしてしまう。他のトランザクションの追加、削除に対するコミット前後の検索を行うことで発生する。
+    </p>
+
+    <h3>14.2トランザクション分離レベル</h3>
+    <p>
+    <em>表14.1 トランザクション分離レベルの一覧</em>
+    
+    <table style="width:max-content;">
+        <tr>
+            <th>分離レベル</th>
+            <th>ダーティリード</th>
+            <th>反復不能読み取り</th>
+            <th>ファントムリード</th>
+        </tr>
+        <tr>
+            <td>READ UNCOMMITED</td>
+            <td>可能性あり</td>
+            <td>可能性あり</td>
+            <td>可能性あり</td>
+        </tr>
+        <tr>
+            <td>READ COMMITED</td>
+            <td>安全</td>
+            <td>可能性あり</td>
+            <td>可能性あり</td>
+        </tr>
+        <tr>
+            <td>REPEATABLE READ</td>
+            <td>安全</td>
+            <td>安全</td>
+            <td>可能性あり</td>
+        </tr>
+        <tr>
+            <td>SERIALIZABLE</td>
+            <td>安全</td>
+            <td>安全</td>
+            <td>安全</td>
+        </tr>
+    </table>
+    <em>※PostgreSQLはREAD UNCOMMITEDはREAD COMMITEDとして処理される。</em>
+
+    </p>
+
+    <h3>14.3参考</h3>
+    <p>
+        <a href="http://www.postgresql.jp/document/9.1/html/transaction-iso.html"
+            target="_blank">http://www.postgresql.jp/document/9.1/html/transaction-iso.html</a>
+        <br>
+        <a href="http://www.postgresql.jp/document/9.1/html/sql-set-transaction.html"
+            target="_blank">http://www.postgresql.jp/document/9.1/html/sql-set-transaction.html</a>
+    </p>
+    <hr>
+</body>
+</html>

@@ -1,0 +1,44 @@
+/* *{
+    margin: 0;
+    padding: 0;
+} */
+h2{
+    color: tomato;
+    font-size: 125%;
+    font-weight: bold;
+    border-left: 10px solid navy;
+}
+
+h3{
+    color: #00f;
+    font-size: 100%;
+    font-weight: 5px;
+    border: 5px #00f;
+    /* line-height: 2;
+    letter-spacing: 5px;
+    margin-left: 10px; */
+}
+
+p{
+    font-size: 11pt;
+}
+
+li{
+    font-size: 11pt;
+}
+
+.test{
+    color: red;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+#highlight{
+    color: brown;
+    font-weight: bold;
+}
+
+em{
+    color: #00f;
+    font-weight: bold;
+}
